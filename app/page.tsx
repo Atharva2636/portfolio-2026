@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
+import Image from 'next/image';
+import profilePic from '@/public/nobg.png'; // This points directly to your file
 const EXPERIENCE = [
   {
     id: "01",
@@ -408,9 +409,9 @@ export default function BrutalistPortfolio() {
           
           <div ref={heroImageRef} className="hero-image-container hover-target">
             <img 
-              src="/nobg.png" 
-              alt="Atharva Somwanshi" 
-              className="hero-image"
+            src="/portfolio-2026/nobg.png" 
+            alt="Atharva Somwanshi" 
+            className="your-existing-tailwind-classes-here"
             />
           </div>
 
