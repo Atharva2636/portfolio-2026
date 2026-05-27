@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Image from 'next/image';
-import profilePic from '@/public/nobg.png'; // This points directly to your file
+import profilePic from '@/public/nobg.png'; 
+
 const EXPERIENCE = [
   {
     id: "01",
@@ -121,7 +122,6 @@ const CSS = `
   }
 
   .hero-background-text {
-    /* Adjusted top, left, and clamp values to prevent clipping the first 'A' */
     position: absolute; top: 32%; left: 55%;
     transform: translate(-50%, -50%);
     font-family: var(--font-display); font-size: clamp(6rem, 16vw, 19rem);
@@ -139,7 +139,7 @@ const CSS = `
   }
 
   .hero-image {
-    height: 100%; width: auto; object-fit: contain; object-position: bottom;
+    height: 100% !important; width: auto !important; object-fit: contain; object-position: bottom;
     filter: grayscale(100%) contrast(110%);
     transition: filter 0.5s ease, transform 0.5s ease;
   }
@@ -253,7 +253,6 @@ const CSS = `
   .footer-links a { color: #FFFFFF; text-decoration: none; font-size: 1.5rem; font-weight: 900; text-transform: uppercase; transition: color 0.3s; }
   .footer-links a:hover { color: var(--accent); }
 
-  /* 3D SCROLL REVEAL ANIMATIONS */
   .reveal { 
     opacity: 0; 
     transform: perspective(1200px) rotateX(15deg) translateY(60px) scale(0.95); 
@@ -266,7 +265,6 @@ const CSS = `
     transform: perspective(1200px) rotateX(0) translateY(0) scale(1); 
   }
   
-  /* specific 3d variations for different components */
   .edu-card.reveal { transform: perspective(1000px) rotateY(-10deg) translateX(-40px); }
   .edu-card.reveal:nth-child(2) { transform: perspective(1000px) rotateY(10deg) translateX(40px); }
   .edu-card.reveal.active { transform: perspective(1000px) rotateY(0) translateX(0); }
@@ -366,20 +364,17 @@ export default function BrutalistPortfolio() {
     };
   }, []);
 
-  // Updated to use Intersection Observer for high-performance 3D scroll revealing
   useEffect(() => {
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.15, // Triggers when 15% of the element is visible
+      threshold: 0.15,
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("active");
-          // Optional: Unobserve after revealing to prevent repeating animation
-          // observer.unobserve(entry.target); 
         }
       });
     }, observerOptions);
@@ -408,10 +403,11 @@ export default function BrutalistPortfolio() {
           </div>
           
           <div ref={heroImageRef} className="hero-image-container hover-target">
-            <img 
-            src="/portfolio-2026/nobg.png" 
-            alt="Atharva Somwanshi" 
-            className="your-existing-tailwind-classes-here"
+            <Image 
+              src={profilePic} 
+              alt="Atharva Somwanshi" 
+              className="hero-image"
+              priority
             />
           </div>
 
